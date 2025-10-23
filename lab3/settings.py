@@ -76,7 +76,7 @@ WSGI_APPLICATION = "lab3.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "obd_lab",
+        "NAME": "serv_lab",
         "USER": "kar",
         "PASSWORD": "dbpass2077",
         "HOST": "localhost",
