@@ -6,6 +6,10 @@
   <body>
     <h1>Список Лікарів</h1>
     <a href="{% url 'doctor_create' %}">Додати нового лікаря</a>
+    <div>
+      <a href="{% url 'api_employee_list' %}">До Працівників API</a>
+      <a href="{% url 'api_position_list' %}">До Посад API</a>
+    </div>
     <hr />
     <ul>
       {% for doctor in doctors %}

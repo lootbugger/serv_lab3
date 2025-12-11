@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>API Employees List</title>
+  </head>
+  <body>
+    <h1>Список Працівників (з порту 8001)</h1>
+    <a href="/web/">Додому (Локальна база)</a>
+    <a href="{% url 'api_position_list' %}">До Посад API</a>
+    <hr />
+
+    {% if error_message %}
+    <p style="color: red; font-weight: bold">{{ error_message }}</p>
+    {% endif %} {% if employees %} {% for emp in employees %}
+    <div class="api-card">
+      <div>
+        <h3>
+          {{ emp.name }} <span class="badge">ID: {{ emp.employee_id }}</span>
+        </h3>
+        <p>
+          <strong>Посада ID:</strong> {{ emp.position }} <br />
+          <strong>Зарплата:</strong> {{ emp.salary }} грн
+        </p>
+      </div>
+
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="employee_id" value="{{ emp.employee_id }}" />
+
+        <button
+          type="submit"
+          class="delete-btn"
+          onclick="return confirm('Ви точно хочете видалити цього працівника через API?');"
+        >
+          Видалити
+        </button>
+      </form>
+    </div>
+    {% endfor %} {% else %}
+    <p>Список порожній або немає з'єднання з сервером API (порт 8001).</p>
+    {% endif %}
+  </body>
+</html>

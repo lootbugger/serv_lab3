@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>API Job Positions</title>
+  </head>
+  <body>
+    <h1>Список Посад (API порт 8001)</h1>
+
+    <div>
+      <a href="/web/" class="nav-link">Додому (Локальна база)</a>
+      <a href="{% url 'api_employee_list' %}">До Працівників API</a>
+    </div>
+    <hr />
+
+    {% if error_message %}
+    <p style="color: red">{{ error_message }}</p>
+    {% endif %} {% if positions %} {% for pos in positions %}
+    <div class="card">
+      <div>
+        <h3>{{ pos.title }} (ID: {{ pos.position_id }})</h3>
+        <p><em>{{ pos.description }}</em></p>
+      </div>
+
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="position_id" value="{{ pos.position_id }}" />
+        <button
+          type="submit"
+          class="btn btn-del"
+          onclick="return confirm('Видалити цю посаду?');"
+        >
+          Видалити
+        </button>
+      </form>
+    </div>
+    {% endfor %} {% else %}
+    <p>Список посад порожній або немає зв'язку з API.</p>
+    {% endif %}
+  </body>
+</html>
