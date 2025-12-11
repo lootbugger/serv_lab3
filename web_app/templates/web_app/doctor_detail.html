@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{ doctor.name }}</title>
+  </head>
+  <body>
+    <h1>{{ doctor.name }}</h1>
+    <p>Email: {{ doctor.email }}</p>
+    <p>Спеціальність: {{ doctor.speciality }}</p>
+    <p>Відділення: {{ doctor.department.name }}</p>
+
+    <a href="{% url 'doctor_edit' doctor.id %}">Редагувати</a> |
+    <a href="{% url 'doctor_list' %}">Назад до списку</a>
+
+    <br /><br />
+    <form action="{% url 'doctor_delete' doctor.id %}" method="post">
+      {% csrf_token %}
+      <button type="submit" style="color: red">Видалити лікаря</button>
+    </form>
+  </body>
+</html>

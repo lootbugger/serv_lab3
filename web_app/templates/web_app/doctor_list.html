@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Doctors List</title>
+  </head>
+  <body>
+    <h1>Список Лікарів</h1>
+    <a href="{% url 'doctor_create' %}">Додати нового лікаря</a>
+    <hr />
+    <ul>
+      {% for doctor in doctors %}
+      <li>
+        <a href="{% url 'doctor_detail' doctor.id %}"> {{ doctor.name }} </a>
+        ({{ doctor.speciality }})
+      </li>
+      {% endfor %}
+    </ul>
+
+    <hr />
+  </body>
+</html>
