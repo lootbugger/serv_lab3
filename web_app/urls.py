@@ -9,4 +9,8 @@ urlpatterns = [
     path("doctor/<int:pk>/delete/", views.doctor_delete, name="doctor_delete"),
     path("api_employee_list/", views.api_employee_list, name="api_employee_list"),
     path("api_positions_list/", views.api_position_list, name="api_position_list"),
+    path("dashboard/", views.analytics_dashboard, name="dashboard"),
+    path("api/analytics/", views.MedicalAnalyticsAPI.as_view(), name="api_analytics"),
+    path("dashboard-v2/", views.analytics_dashboard_bokeh, name="dashboard_v2"),
+    path("performance/", views.performance_dashboard, name="performance"),
 ]
